@@ -1,0 +1,33 @@
+-- Financial Health Dashboard
+-- DAX Measures
+
+Total Income =
+CALCULATE(
+    SUM(FactTransactions[Amount]),
+    FactTransactions[Type] = "Income"
+)
+
+Total Expenses =
+CALCULATE(
+    SUM(FactTransactions[Amount]),
+    FactTransactions[Type] = "Expense"
+)
+
+Net Profit =
+[Total Income] - [Total Expenses]
+
+Profit Margin % =
+DIVIDE(
+    [Net Profit],
+    [Total Income],
+    0
+) * 100
+
+Total Cash Inflow =
+SUM(CashFlow[Cash Inflow])
+
+Total Cash Outflow =
+SUM(CashFlow[Cash Outflow])
+
+Net Cash Flow =
+[Total Cash Inflow] - [Total Cash Outflow]
